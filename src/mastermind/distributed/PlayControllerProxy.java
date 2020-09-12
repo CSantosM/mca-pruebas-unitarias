@@ -14,7 +14,7 @@ public class PlayControllerProxy extends PlayController {
 
 	private TCPIP tcpip;
 
-	PlayControllerProxy(Session session, TCPIP tcpip) {
+	public PlayControllerProxy(Session session, TCPIP tcpip) {
 		super(session);
 		this.tcpip = tcpip;
 	}
@@ -69,7 +69,7 @@ public class PlayControllerProxy extends PlayController {
 		this.tcpip.send(FrameType.COLORS.name());
 		this.tcpip.send(position);
 		int size = this.tcpip.receiveInt();
-		List<Color> colors = new ArrayList<Color>(); 
+		List<Color> colors = new ArrayList<Color>();
 		for (int i = 0; i < size; i++) {
 			colors.add(this.tcpip.receiveColor());
 		}
@@ -81,7 +81,7 @@ public class PlayControllerProxy extends PlayController {
 		this.tcpip.send(FrameType.ATTEMPTS.name());
 		return this.tcpip.receiveInt();
 	}
-	
+
 	@Override
 	public int getBlacks(int position) {
 		this.tcpip.send(FrameType.BLACKS.name());
